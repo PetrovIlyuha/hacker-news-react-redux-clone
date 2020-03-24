@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { doArchiveStory } from "../actions/archive";
+import { fetchStories } from "../api/story";
 
 import "./Story.css";
 import ButtonInline from "./ButtonInline";
@@ -8,11 +9,6 @@ import ButtonInline from "./ButtonInline";
 // Saga
 import { call, put } from "redux-saga/effects";
 import { doAddStories } from "../actions/story";
-
-const HN_BASE_URL = "http://hn.algolia.com/api/v1/search?query=";
-
-const fetchStories = query =>
-  fetch(HN_BASE_URL + query).then(res => res.json());
 
 function* handleFetchStories(action) {
   const { query } = action;
