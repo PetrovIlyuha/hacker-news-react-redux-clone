@@ -8,12 +8,16 @@ import ButtonInline from "./ButtonInline";
 
 // Saga
 import { call, put } from "redux-saga/effects";
-import { doAddStories } from "../actions/story";
+import { doAddStories, doFetchErrorStories } from "../actions/story";
 
 function* handleFetchStories(action) {
   const { query } = action;
-  const result = yield call(fetchStories, query);
-  yield put(doAddStories(result.hits));
+  try {
+    const result = yield call(fetchStories, query);
+    yield put(doAddStories(result.hits));
+  } catch {
+    yield put(doFetchErrorStories(error));
+  }
 }
 
 const Story = ({ story, columns, onArchive }) => {
