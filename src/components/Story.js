@@ -15,7 +15,7 @@ function* handleFetchStories(action) {
   try {
     const result = yield call(fetchStories, query);
     yield put(doAddStories(result.hits));
-  } catch {
+  } catch (error) {
     yield put(doFetchErrorStories(error));
   }
 }
