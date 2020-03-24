@@ -1,0 +1,12 @@
+.app {
+  margin: 20px;
+}
+
+h1 {
+  font-family: "Montserrat", sans-serif;
+}
+
+.interactions,
+.error {
+  text-align: center;
+}
